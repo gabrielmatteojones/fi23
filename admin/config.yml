@@ -5,8 +5,8 @@ backend:
 media_folder: "images"
 public_folder: "/images"
 
-site_url: "/"
-logo_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/500px-Google_%22G%22_logo.svg.png" # opzionale
+site_url: "{{ site.url }}"
+logo_url: "{{ site.url }}{{ site.logo }}" # opzionale
 
 collections:
   - name: "posts"
