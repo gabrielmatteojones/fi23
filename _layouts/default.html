@@ -1,51 +1,284 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sezione Infanzia Gabriel Jones</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap');
+        :root {
+            --red: #e31b23;
+            --dark: #1a1a1a;
+            --white: #ffffff;
+            --navy: #002147; /* Il blu di Liverpool per i dettagli */
+        }
 
-    {% include meta.html %}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--white);
+            overflow-x: hidden;
+        }
 
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
+        /* --- HEADER --- */
+        header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%);
+        }
 
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
-  </head>
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
+        }
 
-  <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+        .logo-box {
+            background: white;
+            color: var(--red);
+            padding: 5px 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
 
-          <div class="site-info">
-            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-            <p class="site-description">{{ site.description }}</p>
-          </div>
+        /* --- NAV PC (Visible only on Desktop) --- */
+        .nav-pc {
+            display: flex;
+            list-style: none;
+        }
 
-          <nav>
-            <a href="{{ site.baseurl }}/">Blog</a>
-            <a href="{{ site.baseurl }}/about">About</a>
-          </nav>
-        </header>
-      </div>
+        .nav-pc > li {
+            position: relative;
+            margin-left: 30px;
+        }
+
+        .nav-pc a {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 10px 0;
+        }
+
+        /* Dropdown PC */
+        .dropdown-pc {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-top: 3px solid var(--red);
+            padding: 10px 0;
+        }
+
+        .dropdown-pc a {
+            color: var(--dark) !important;
+            padding: 10px 20px;
+            font-size: 13px;
+        }
+
+        .dropdown-pc a:hover { background: #f4f4f4; color: var(--red) !important; }
+
+        .nav-pc li:hover .dropdown-pc { display: flex; }
+
+        /* --- HAMBURGER (Visible only on Mobile) --- */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: white;
+        }
+
+        /* --- SIDEBAR MOBILE --- */
+        .slidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100%;
+            background: var(--white);
+            z-index: 2000;
+            transition: 0.4s;
+            padding: 80px 40px;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        }
+
+        .slidebar.active { right: 0; }
+
+        .slidebar ul { list-style: none; }
+
+        .slidebar .menu-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+
+        .slidebar a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        /* Dropdown Mobile cliccabile */
+        .submenu-mobile {
+            display: none;
+            padding: 10px 0 0 20px;
+        }
+
+        .submenu-mobile a {
+            font-size: 14px;
+            font-weight: 400;
+            padding: 8px 0;
+            color: #666;
+        }
+
+        .close-sidebar {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            height: 65vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), 
+                        url('https://images.unsplash.com/photo-1472162072942-cd5147eb3902?q=80&w=2000') center/cover;
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 60px;
+        }
+
+        .hero-box {
+            background: var(--navy);
+            color: white;
+            padding: 40px;
+            width: 420px;
+            margin-left: 8%;
+            border-top: 6px solid white;
+        }
+
+        .hero-box h1 { font-family: 'Montserrat', sans-serif; font-size: 3rem; margin-bottom: 15px; }
+        
+        .btn-red {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        /* --- MEDIA QUERIES --- */
+        @media (max-width: 992px) {
+            .nav-pc { display: none; }
+            .hamburger { display: flex; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-box { width: 90%; margin-left: 5%; padding: 30px; }
+            .hero-box h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slidebar" id="slidebar">
+        <div class="close-sidebar" onclick="toggleSidebar()">×</div>
+        <ul>
+            <li class="menu-item">
+                <a href="javascript:void(0)" onclick="toggleSubmenu('sub1')">PROGETTO ▾</a>
+                <div class="submenu-mobile" id="sub1">
+                    <a href="#">Tema 2026</a>
+                    <a href="#">Valori</a>
+                </div>
+            </li>
+            <li class="menu-item">
+                <a href="javascript:void(0)" onclick="toggleSubmenu('sub2')">ATTIVITÀ ▾</a>
+                <div class="submenu-mobile" id="sub2">
+                    <a href="#">Laboratori</a>
+                    <a href="#">Gite</a>
+                </div>
+            </li>
+            <li class="menu-item"><a href="#">ISCRIZIONI</a></li>
+        </ul>
     </div>
 
-    <div id="main" role="main" class="container">
-      {{ content }}
-    </div>
+    <header>
+        <a href="#" class="logo">
+            <div class="logo-box">GREST</div>
+            <div class="logo-text">SAN LUIGI<br><small style="font-weight: 300; font-size: 10px;">AREA BAMBINI</small></div>
+        </a>
 
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          {% include svg-icons.html %}
-        </footer>
-      </div>
-    </div>
+        <ul class="nav-pc">
+            <li>
+                <a href="#">PROGETTO ▾</a>
+                <div class="dropdown-pc">
+                    <a href="#">Tema 2026</a>
+                    <a href="#">Valori educativi</a>
+                </div>
+            </li>
+            <li>
+                <a href="#">ATTIVITÀ ▾</a>
+                <div class="dropdown-pc">
+                    <a href="#">Laboratori</a>
+                    <a href="#">Sport</a>
+                    <a href="#">Gite</a>
+                </div>
+            </li>
+            <li><a href="#">ISCRIZIONI</a></li>
+        </ul>
 
-    {% include analytics.html %}
-  </body>
+        <div class="hamburger" onclick="toggleSidebar()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-box">
+            <h1>ESTATE<br>2026</h1>
+            <p>Iscrizioni aperte per la nuova avventura in oratorio.</p>
+            <a href="#" class="btn-red">SCOPRI DI PIÙ →</a>
+        </div>
+    </section>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('slidebar').classList.toggle('active');
+        }
+
+        function toggleSubmenu(id) {
+            const sub = document.getElementById(id);
+            sub.style.display = sub.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+{{ content }}
+</body>
 </html>
