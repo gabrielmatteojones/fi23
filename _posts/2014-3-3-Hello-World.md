@@ -1,10 +1,8 @@
 ---
 layout: post
-title: You're up and running!
+title: La storia di DonBosco
 ---
 
-Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
-
-![_config.yml]({{ site.baseurl }}/images/config.png)
-
-The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub.
+Giovanni Bosco, nato nel 1815 a Castelnuovo d’Asti, dedicò la sua vita ai giovani poveri e abbandonati della Torino dell’Ottocento. Vedendo ragazzi senza scuola, lavoro o famiglia, iniziò a incontrarli per strada, insegnando loro un mestiere, il catechismo e offrendo amicizia e accoglienza.
+Da questa esperienza nacquero gli oratori, luoghi dove i ragazzi potevano giocare, studiare, pregare e sentirsi al sicuro. Il primo grande oratorio fu quello di Valdocco, a Torino. Don Bosco credeva nell’educazione fatta con affetto, fiducia e presenza costante, chiamata “sistema preventivo”.
+Per continuare la sua opera fondò i Salesiani e, insieme a Maria Domenica Mazzarello, anche le Figlie di Maria Ausiliatrice. Ancora oggi gli oratori salesiani sono presenti in molti paesi del mondo e aiutano milioni di giovani.
